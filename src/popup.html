@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WriteWise - Rewrite</title>
+  <link rel="stylesheet" href="style.css" />
+  <link crossorigin href="https://fonts.gstatic.com/" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?display=swap&family=Inter:wght@400;500;700;900&family=Noto+Sans:wght@400;500;700;900" rel="stylesheet" />
+</head>
+<body>
+  <div id="app">
+    <form id="config-form" style="display:none">
+      <div style="display:flex;justify-content:center;align-items:center;margin-bottom:12px;">
+        <img src="../assets/ww-logo.png" alt="WriteWise Logo" style="height:36px;width:36px;" />
+      </div>
+      <h2>Setup WriteWise</h2>
+      <div>
+        <label>AI Provider</label>
+        <div style="display:flex;gap:12px;margin-bottom:8px">
+          <label><input type="radio" name="provider" value="gpt" checked /> GPT</label>
+          <label><input type="radio" name="provider" value="gemini" /> Gemini</label>
+        </div>
+      </div>
+      <div>
+        <label for="apiKey">API Key</label>
+        <input id="apiKey" type="password" placeholder="Enter your API key" />
+        <button type="button" id="testKeyBtn">Test Key</button>
+        <span id="testResult"></span>
+      </div>
+      <div>
+        <label for="model">Model</label>
+        <select id="model"><option>-- Select Model --</option></select>
+      </div>
+      <div>
+        <label for="tone">Default Tone</label>
+        <select id="tone">
+          <option>Professional</option>
+          <option>Casual</option>
+          <option>Friendly</option>
+          <option>Formal</option>
+        </select>
+      </div>
+      <div>
+        <label for="purpose">Default Purpose</label>
+        <select id="purpose">
+          <option>Email</option>
+          <option>Report</option>
+          <option>Message</option>
+          <option>Social Media</option>
+        </select>
+      </div>
+      <div>
+        <label for="promptOverride">Prompt Template (optional)</label>
+        <textarea id="promptOverride" placeholder="Custom prompt template..."></textarea>
+        <button type="button" id="resetPromptBtn">Reset Prompt</button>
+      </div>
+      <button type="submit">Save & Continue</button>
+      <button type="button" id="clearDataBtn" style="margin-top:8px">Clear All Data</button>
+      <span id="clearDataResult" style="margin-left:8px"></span>
+    </form>
+    <div id="main-ui" style="display:none">
+      <div style="display:flex;justify-content:center;align-items:center;margin-bottom:12px;">
+        <img src="../assets/ww-logo.png" alt="WriteWise Logo" style="height:36px;width:36px;" />
+      </div>
+      <div class="input-group icon-input">
+        <label for="inputText">Your Text</label>
+        <textarea id="inputText" placeholder="Enter text to rewrite" style="background: var(--ww-bg); color: var(--ww-text);"></textarea>
+      </div>
+      <div class="input-group icon-dropdown">
+        <div style="flex:1">
+          <label for="toneMain">Tone</label>
+          <select id="toneMain" style="background: var(--ww-bg); color: var(--ww-text);">
+            <option>Professional</option>
+            <option>Casual</option>
+            <option>Friendly</option>
+            <option>Formal</option>
+          </select>
+        </div>
+        <div style="flex:1">
+          <label for="purposeMain">Purpose</label>
+          <select id="purposeMain" style="background: var(--ww-bg); color: var(--ww-text);">
+            <option>Email</option>
+            <option>Report</option>
+            <option>Message</option>
+            <option>Social Media</option>
+          </select>
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="context">Optional Context</label>
+        <input id="context" type="text" placeholder="Add any relevant context here..." style="background: var(--ww-bg); color: var(--ww-text);" />
+      </div>
+      <button id="generateBtn">Generate</button>
+      <div id="outputBox" style="display:none">
+        <label for="outputText">Rewritten Text</label>
+        <textarea id="outputText" readonly aria-live="polite"></textarea>
+        <div style="display:flex;gap:8px;margin-top:6px">
+          <button id="copyBtn" type="button">Copy</button>
+          <button id="insertBtn" type="button">Copy & Insert</button>
+        </div>
+      </div>
+      <div id="loadingSpinner" class="spinner" style="display:none"></div>
+      <a id="settingsLink" href="#">Settings</a>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

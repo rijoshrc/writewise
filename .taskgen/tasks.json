@@ -1,0 +1,165 @@
+{
+  "id": 100,
+  "title": "Develop WriteWise Chrome Extension",
+  "description": "Design and build a Chrome Extension that rewrites text using GPT or Gemini with user-defined tone and purpose, supports prompt customization, and maintains local privacy-first data storage.",
+  "status": "not started",
+  "dependencies": [],
+  "priority": "high",
+  "details": "WriteWise is a browser extension that lets users input rough text and refine it using AI. It supports model configuration, tone and purpose selection, in-memory prompt editing, keyboard shortcuts, and data privacy via local storage.",
+  "testStrategy": "Test end-to-end functionality including model selection, prompt generation, API key management, tone matching, output formatting, and error handling.",
+  "subtasks": [
+    {
+      "id": 1000,
+      "title": "Initial Project Setup for WriteWise",
+      "description": "Prepare the development environment for building the WriteWise Chrome Extension.",
+      "status": "done",
+      "dependencies": [],
+      "priority": "high",
+      "details": "- Create project folder structure (e.g., /src, /assets, /manifest)\n- Initialize Git repository\n- Set up a basic Manifest V3 Chrome Extension scaffold\n- Install necessary tools: VSCode, Node.js (if using bundlers or testing tools)\n- Install recommended extensions for development:\n  - Prettier (code formatting)\n  - ESLint (optional, for code linting)\n  - Live Server (for testing HTML UIs)\n- Create placeholder files:\n  - manifest.json\n  - popup.html\n  - popup.js\n  - style.css\n  - prompt.txt (default prompt)\n- Create basic .gitignore and README.md\n- Open Chrome and enable Developer Mode on chrome://extensions\n- Load unpacked extension to test initial setup",
+      "testStrategy": "Confirm extension loads successfully in Chrome with no console errors. Ensure all placeholder files exist and are editable in the environment."
+    },
+    {
+      "id": 101,
+      "title": "Design Extension Configuration Screen",
+      "description": "Create the first-time setup screen allowing users to select the AI provider, input and test API keys, and select default tone and purpose.",
+      "status": "done",
+      "dependencies": [],
+      "priority": "high",
+      "details": "- Radio buttons for GPT/Gemini selection\n- Input field for API key\n- Test Connection button with result display\n- Model dropdown populated after successful API validation\n- Tone and Purpose dropdowns\n- Save & Continue button to proceed to main UI\n- Store configuration using chrome.storage.local",
+      "testStrategy": "Validate that configuration is only shown on first run. Verify key validation works and models are fetched and listed. Confirm data is saved locally."
+    },
+    {
+      "id": 102,
+      "title": "Implement API Key Validation and Model Fetching",
+      "description": "Build logic to test the user's API key and fetch available models from GPT or Gemini endpoints after validation.",
+      "status": "done",
+      "dependencies": [101],
+      "priority": "high",
+      "details": "- Call OpenAI or Gemini API endpoints based on provider\n- Handle success and error responses gracefully\n- Filter response to show only supported models (chat/completion)\n- Populate model selector dropdown with human-readable labels",
+      "testStrategy": "Use known valid and invalid keys to confirm behavior. Ensure model list is accurate and filters unsupported ones."
+    },
+    {
+      "id": 103,
+      "title": "Create Main Input UI",
+      "description": "Build the main interface for inputting rough text, selecting tone/purpose, and displaying the polished result.",
+      "status": "done",
+      "dependencies": [101],
+      "priority": "high",
+      "details": "- Textarea for input\n- Dropdowns for tone and purpose (with saved defaults)\n- Optional context field\n- Generate button\n- Output box with Copy and Insert buttons\n- Settings access link",
+      "testStrategy": "Ensure UI displays saved tone/purpose. Test generate flow from rough input to AI output. Validate output controls work."
+    },
+    {
+      "id": 104,
+      "title": "Implement Prompt File and Session-Based Override",
+      "description": "Add support for a default system prompt file and in-memory user-edited versions for session-specific customization.",
+      "status": "done",
+      "dependencies": [],
+      "priority": "medium",
+      "details": "- Create prompt.txt or embed default prompt in code\n- Support dynamic values: [INPUT], [TONE], [PURPOSE]\n- Add editable textarea for session prompt override in settings\n- Reset to default and in-memory-only behavior",
+      "testStrategy": "Verify default prompt loads correctly. Test prompt override reflects in generation request. Ensure override resets on refresh."
+    },
+    {
+      "id": 105,
+      "title": "Build Settings and Prompt Editor Screen",
+      "description": "Develop the settings screen to manage API key, default values, model, and session prompt editing.",
+      "status": "done",
+      "dependencies": [104],
+      "priority": "medium",
+      "details": "- Show current settings with option to update each\n- Allow re-testing API key and refetching models\n- Provide prompt editor with save-for-session and reset options\n- Include Clear All Data and privacy information",
+      "testStrategy": "Change and save new settings, verify they persist. Edit prompt, confirm temporary usage. Clear all data and validate reset."
+    },
+    {
+      "id": 106,
+      "title": "Add Chrome Keyboard Shortcut Integration",
+      "description": "Enable extension popup to open using keyboard shortcut Ctrl+Shift+P (or Cmd+Shift+P on Mac).",
+      "status": "non done",
+      "dependencies": [],
+      "priority": "low",
+      "details": "- Use Chrome manifest `commands` to map shortcut\n- Bind `_execute_action` to open the popup\n- Document shortcut configuration in help/settings",
+      "testStrategy": "Set shortcut and confirm it opens the extension. Test on both Windows and Mac key bindings."
+    },
+    {
+      "id": 107,
+      "title": "Implement Privacy & GDPR Compliance Features",
+      "description": "Ensure all data is local, user-controlled, and deletion is supported. No third-party analytics or tracking.",
+      "status": "done",
+      "dependencies": [101, 105],
+      "priority": "high",
+      "details": "- Store data using `chrome.storage.local` only\n- No cookies or backend requests (except user API call)\n- Provide 'Clear All Data' function\n- Add simple privacy notice in config/settings screen",
+      "testStrategy": "Audit storage usage. Confirm 'Clear All Data' removes everything. Review extension permissions and network usage for compliance."
+    },
+    {
+      "id": 108,
+      "title": "Design and Apply UI Styling for Extension",
+      "description": "Add CSS styles to create a clean, modern, and user-friendly interface across all screens of the WriteWise extension.",
+      "status": "done",
+      "dependencies": [101, 103, 105],
+      "priority": "medium",
+      "details": "- Use a consistent font (e.g., Inter, Lato, or system font)\n- Apply padding, spacing, and visual hierarchy to forms and buttons\n- Design a color scheme that is modern and accessible (e.g., soft blue, gray, white)\n- Style input fields, dropdowns, buttons, and output box with hover/focus effects\n- Make layout responsive to different popup sizes\n- Add a lightweight loading indicator while generating AI output\n- Organize styles into a `style.css` file",
+      "testStrategy": "Visually inspect all screens (config, input, settings) for clarity and consistency. Test in light/dark mode. Check hover/focus states, spacing, and visual clarity. Ensure accessibility (contrast, text size).",
+      "subtasks":[
+                      {
+                          "id": 1081,
+                          "title": "Style Configuration Screen UI",
+                          "description": "Apply clean, accessible styles to the first-time configuration screen.",
+                          "status": "done",
+                          "dependencies": [101],
+                          "priority": "medium",
+                          "details": "- Group related form elements with visual spacing\n- Style radio buttons and dropdowns consistently\n- Use accent colors for buttons (e.g., Save & Continue)\n- Display validation success/error messages in a styled alert box\n- Make the form responsive to smaller popup sizes",
+                          "testStrategy": "Open the configuration screen and test layout, spacing, and responsiveness. Validate visual consistency and button states."
+                      },
+                      {
+                          "id": 1082,
+                          "title": "Style Main Input UI",
+                          "description": "Design and apply styles to the main popup interface used for generating polished text.",
+                          "status": "not started",
+                          "dependencies": [103],
+                          "priority": "medium",
+                          "details": "- Style textarea with rounded corners, padding, and clear font\n- Use consistent dropdown styles for tone and purpose\n- Add spacing between fields and group inputs visually\n- Style the Generate button to stand out with hover/focus effects\n- Design output display box to look clean and readable\n- Add icons or visual separation between original input and output",
+                          "testStrategy": "Ensure the UI looks clean and the output area is distinct. Test hover/focus states and element alignment."
+                      },
+                      {
+                          "id": 1083,
+                          "title": "Style Settings and Prompt Editor Screen",
+                          "description": "Apply organized and accessible styling to the settings and prompt editor screen.",
+                          "status": "not started",
+                          "dependencies": [105],
+                          "priority": "medium",
+                          "details": "- Use section headers to separate API, model, and prompt options\n- Style the prompt textarea for better readability\n- Style buttons (Save, Reset, Clear All Data) with proper spacing\n- Use color to indicate destructive actions like 'Clear All Data'\n- Maintain visual consistency with other screens",
+                          "testStrategy": "Verify settings screen is easy to scan and interact with. Check spacing, button states, and prompt editor readability."
+                      },
+                      {
+                          "id": 1084,
+                          "title": "Define Global UI Theme and Stylesheet",
+                          "description": "Create a shared CSS file (`style.css`) that defines consistent styles across all screens.",
+                          "status": "not started",
+                          "dependencies": [1000],
+                          "priority": "medium",
+                          "details": "- Define primary font (e.g., Inter or system UI)\n- Set base colors, spacing units, button styles\n- Add utility classes for layout and alignment\n- Style input fields, dropdowns, and textareas\n- Ensure dark/light mode compatibility (optional)",
+                          "testStrategy": "Confirm that all screens use consistent font, color, and spacing. Test responsiveness and font clarity on different screen sizes."
+                      },
+                      {
+                          "id": 1085,
+                          "title": "Add Loading and Feedback Indicators",
+                          "description": "Add visual feedback such as spinners and status messages for API interaction points.",
+                          "status": "not started",
+                          "dependencies": [102, 103],
+                          "priority": "medium",
+                          "details": "- Add loading spinner or inline loader during API calls (Generate, Test Key)\n- Show status messages for API success/error clearly\n- Use subtle animations or transitions where appropriate\n- Keep loaders minimal to match lightweight UX",
+                          "testStrategy": "Trigger API interactions and confirm loaders appear and disappear at the right times. Validate placement and clarity of messages."
+                      }
+                  ]
+    },
+    {
+  "id": 109,
+  "title": "Create Global Color Tokens & Visual Guide",
+  "description": "Define CSS variables for the agreed-upon WriteWise color palette and provide a lightweight visual reference (HTML preview or Figma styles) so developers and designers can verify usage at a glance.",
+  "status": "not started",
+  "dependencies": [1084],
+  "priority": "medium",
+  "details": "- Add a new file `/src/styles/colors.css` (or append to `style.css`) with :root CSS custom properties:\n  --color-primary: #10B981;\n  --color-primary-hover: #059669;\n  --color-accent: #64748B;\n  --color-bg: #F9FAFB;\n  --color-surface: #FFFFFF;\n  --color-text: #111827;\n  --color-text-secondary: #6B7280;\n  --color-border: #E5E7EB;\n  --color-error: #EF4444;\n  --color-error-hover: #DC2626;\n  --color-success-bg: #D1FAE5;\n  --color-success-text: #065F46;\n- Update existing CSS to replace hard-coded hex values with these variables.\n- Generate a simple `palette-preview.html` that shows swatches, their variable names, and intended roles.\n- (Optional) Publish the palette as a shared Figma local style so designers can reuse the exact tokens.",
+  "testStrategy": "Inspect `palette-preview.html` to ensure all variables map to the correct hex codes and that visual roles (buttons, alerts, text) render with the new tokens. Confirm no UI regressions after variable swap."
+}
+
+  ]
+}

@@ -1,0 +1,123 @@
+<html><head>
+<meta charset="utf-8"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter%3Awght%40400%3B500%3B700%3B900&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+      :root {
+        --primary-color: #0c7ff2;
+        --secondary-color: #e7edf4;
+        --text-primary: #0d141c;
+        --text-secondary: #49739c;
+        --background-color: #f8fafc;
+        --border-color: #e2e8f0;
+      }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-[var(--background-color)]" style='font-family: Inter, "Noto Sans", sans-serif;'>
+<div class="relative flex size-full min-h-screen flex-col justify-between group/design-root overflow-x-hidden">
+<div>
+<header class="sticky top-0 z-10 bg-[var(--background-color)]/80 backdrop-blur-sm">
+<div class="flex items-center p-4">
+<button class="flex size-10 items-center justify-center text-[var(--text-primary)]">
+<span class="material-symbols-outlined text-2xl"> arrow_back_ios_new </span>
+</button>
+<h1 class="flex-1 text-center text-xl font-bold tracking-tight text-[var(--text-primary)]">Setup</h1>
+<div class="w-10"></div>
+</div>
+<div class="h-px bg-[var(--border-color)]"></div>
+</header>
+<main class="p-6 space-y-8">
+<fieldset>
+<legend class="text-base font-semibold text-[var(--text-primary)] mb-4">AI Provider</legend>
+<div class="grid grid-cols-2 gap-4">
+<label class="flex items-center gap-4 rounded-xl border-2 border-transparent bg-white p-4 has-[:checked]:border-[var(--primary-color)] has-[:checked]:ring-2 has-[:checked]:ring-[var(--primary-color)]/20 shadow-sm transition-all cursor-pointer">
+<input checked="" class="form-radio h-5 w-5 border-[var(--border-color)] text-[var(--primary-color)] focus:ring-[var(--primary-color)] focus:ring-offset-0" name="ai_provider" type="radio" value="gpt"/>
+<span class="text-base font-medium text-[var(--text-primary)]">GPT</span>
+</label>
+<label class="flex items-center gap-4 rounded-xl border-2 border-transparent bg-white p-4 has-[:checked]:border-[var(--primary-color)] has-[:checked]:ring-2 has-[:checked]:ring-[var(--primary-color)]/20 shadow-sm transition-all cursor-pointer">
+<input class="form-radio h-5 w-5 border-[var(--border-color)] text-[var(--primary-color)] focus:ring-[var(--primary-color)] focus:ring-offset-0" name="ai_provider" type="radio" value="gemini"/>
+<span class="text-base font-medium text-[var(--text-primary)]">Gemini</span>
+</label>
+</div>
+</fieldset>
+<div class="space-y-4">
+<div class="relative">
+<label class="block text-base font-semibold text-[var(--text-primary)] mb-2" for="api-key">API Key</label>
+<input class="form-input block w-full rounded-xl border-[var(--border-color)] bg-white px-4 py-3 text-base text-[var(--text-primary)] placeholder:text-[var(--text-secondary)] shadow-sm focus:border-[var(--primary-color)] focus:ring-[var(--primary-color)]/50 focus:ring-2" id="api-key" placeholder="Enter your API key" type="password"/>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2 text-sm text-green-600">
+<span class="material-symbols-outlined text-xl"> check_circle </span>
+<span class="font-medium">API Key Validated</span>
+</div>
+<button class="rounded-lg bg-[var(--secondary-color)] px-4 py-2 text-sm font-bold text-[var(--text-primary)] transition-colors hover:bg-gray-200">Test Connection</button>
+</div>
+</div>
+<div class="space-y-6">
+<div>
+<label class="block text-base font-semibold text-[var(--text-primary)] mb-2" for="model">Model</label>
+<select class="form-select block w-full rounded-xl border-[var(--border-color)] bg-white px-4 py-3 text-base text-[var(--text-primary)] shadow-sm focus:border-[var(--primary-color)] focus:ring-[var(--primary-color)]/50 focus:ring-2" id="model">
+<option>GPT-4</option>
+<option>GPT-3.5 Turbo</option>
+</select>
+</div>
+<div>
+<label class="block text-base font-semibold text-[var(--text-primary)] mb-2" for="tone">Default Tone</label>
+<select class="form-select block w-full rounded-xl border-[var(--border-color)] bg-white px-4 py-3 text-base text-[var(--text-primary)] shadow-sm focus:border-[var(--primary-color)] focus:ring-[var(--primary-color)]/50 focus:ring-2" id="tone">
+<option>Professional</option>
+<option>Friendly</option>
+<option>Assertive</option>
+<option>Casual</option>
+</select>
+</div>
+<div>
+<label class="block text-base font-semibold text-[var(--text-primary)] mb-2" for="purpose">Default Purpose</label>
+<select class="form-select block w-full rounded-xl border-[var(--border-color)] bg-white px-4 py-3 text-base text-[var(--text-primary)] shadow-sm focus:border-[var(--primary-color)] focus:ring-[var(--primary-color)]/50 focus:ring-2" id="purpose">
+<option>Email</option>
+<option>Comment</option>
+<option>Request</option>
+<option>Apology</option>
+</select>
+</div>
+</div>
+<div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-md">
+<div class="flex">
+<div class="flex-shrink-0">
+<span class="material-symbols-outlined text-blue-500">
+                  info
+                </span>
+</div>
+<div class="ml-3">
+<h3 class="text-base font-semibold text-blue-800">Privacy Notice</h3>
+<div class="mt-2 text-sm text-blue-700">
+<p>Your data is processed securely and is not shared with third parties. We adhere to strict privacy standards to protect your information.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<footer class="sticky bottom-0 bg-[var(--background-color)]/80 backdrop-blur-sm p-4 border-t border-[var(--border-color)]">
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-bold text-red-600 transition-colors hover:bg-red-50">
+<span class="material-symbols-outlined"> delete_forever </span>
+<span class="truncate">Clear All Data</span>
+</button>
+<button class="flex-1 rounded-xl bg-[var(--primary-color)] px-5 py-3 text-center text-base font-bold text-white shadow-sm transition-colors hover:bg-blue-700">Save &amp; Continue</button>
+</div>
+</footer>
+</div>
+
+</body></html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WriteWise Color Palette Preview</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { background: var(--color-bg, #f9fafb); color: var(--color-text, #111827); font-family: Inter, Lato, system-ui, Arial, sans-serif; padding: 32px; }
+    h1 { color: var(--color-primary, #10B981); }
+    .swatch-row { display: flex; align-items: center; margin-bottom: 18px; }
+    .swatch { width: 48px; height: 48px; border-radius: 8px; margin-right: 18px; border: 1.5px solid var(--color-border, #e5e7eb); box-shadow: 0 1px 4px #0001; }
+    .swatch-label { min-width: 160px; font-weight: 600; color: var(--color-text-secondary, #6b7280); }
+    .swatch-code { font-family: monospace; color: var(--color-text-secondary, #6b7280); }
+    .swatch-desc { margin-left: 12px; color: var(--color-text-secondary, #6b7280); font-size: 0.98em; }
+  </style>
+</head>
+<body>
+  <h1>WriteWise Color Palette</h1>
+  <div class="swatch-row"><div class="swatch" style="background: var(--color-primary, #10B981);"></div><span class="swatch-label">--color-primary</span><span class="swatch-code">#10B981</span><span class="swatch-desc">Primary action, highlights</span></div>
+  <div class="swatch-row"><div class="swatch" style="background: var(--color-primary-hover, #059669);"></div><span class="swatch-label">--color-primary-hover</span><span class="swatch-code">#059669</span><span class="swatch-desc">Primary hover</span></div>
+  <div class="swatch-row"><div class="swatch" style="background: var(--color-accent, #64748B);"></div><span class="swatch-label">--color-accent</span><span class="swatch-code">#64748B</span><span class="swatch-desc">Accent, secondary actions</span></div>
+  <div class="swatch-row"><div class="swatch" style="background: var(--color-bg, #F9FAFB);"></div><span class="swatch-label">--color-bg</span><span class="swatch-code">#F9FAFB</span><span class="swatch-desc">Background</span></div>
+  <div class="swatch-row"><div class="swatch" style="background: var(--color-surface, #FFFFFF);"></div><span class="swatch-label">--color-surface</span><span class="swatch-code">#FFFFFF</span><span class="swatch-desc">Panels, popups</span></div>
+  <div class="swatch-row"><div class="swatch" style="background: var(--color-text, #111827);"></div><span class="swatch-label">--color-text</span><span class="swatch-code">#111827</span><span class="swatch-desc">Primary text</span></div>
+  <div class="swatch-row"><div class="swatch" style="background: var(--color-text-secondary, #6B7280);"></div><span class="swatch-label">--color-text-secondary</span><span class="swatch-code">#6B7280</span><span class="swatch-desc">Secondary text</span></div>
+  <div class="swatch-row"><div class="swatch" style="background: var(--color-border, #E5E7EB);"></div><span class="swatch-label">--color-border</span><span class="swatch-code">#E5E7EB</span><span class="swatch-desc">Borders, dividers</span></div>
+  <div class="swatch-row"><div class="swatch" style="background: var(--color-error, #EF4444);"></div><span class="swatch-label">--color-error</span><span class="swatch-code">#EF4444</span><span class="swatch-desc">Error, warning</span></div>
+  <div class="swatch-row"><div class="swatch" style="background: var(--color-error-hover, #DC2626);"></div><span class="swatch-label">--color-error-hover</span><span class="swatch-code">#DC2626</span><span class="swatch-desc">Error hover</span></div>
+  <div class="swatch-row"><div class="swatch" style="background: var(--color-success-bg, #D1FAE5);"></div><span class="swatch-label">--color-success-bg</span><span class="swatch-code">#D1FAE5</span><span class="swatch-desc">Success background</span></div>
+  <div class="swatch-row"><div class="swatch" style="background: var(--color-success-text, #065F46);"></div><span class="swatch-label">--color-success-text</span><span class="swatch-code">#065F46</span><span class="swatch-desc">Success text</span></div>
+</body>
+</html>
