@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
       outputText.setAttribute("aria-busy", "true");
       document.getElementById("loadingSpinner").style.display = "block";
       // Build prompt
-      const prompt = await getCurrentPrompt(input, tone, purpose);
+      const prompt = await getCurrentPrompt(input, tone, purpose, context);
       // Get config
       chrome.storage.local.get(
         ["provider", "apiKey", "model", "availableModels"],
@@ -282,19 +282,10 @@ document.addEventListener("DOMContentLoaded", () => {
   setButtonPurposeClass(document.getElementById("resetPromptBtn"), "danger");
 
   // --- Prompt Override Logic ---
-  const promptPath = "src/prompt.txt";
-  let defaultPrompt = "";
-
-  // Load default prompt from file
-  fetch(promptPath)
-    .then((res) => res.text())
-    .then((text) => {
-      defaultPrompt = text;
-    })
-    .catch(() => {
-      defaultPrompt =
-        "You are WriteWise, an AI writing assistant. Rewrite the following text to match the user's selected tone and purpose:\n\n[INPUT]\n\nTone: [TONE]\nPurpose: [PURPOSE]";
-    });
+  // Remove fetch logic and define defaultPrompt directly
+  const defaultPrompt = `You are WriteWise, an AI writing assistant. Rewrite the following text according to the user's selected tone, purpose, and context.\n\nInstructions:\n- Carefully read the input text.\n- Rewrite it to match the specified tone and purpose.\n- Incorporate the provided context if relevant.\n- Do not add information not present in the input.\n- Output only the improved text.\n\n[INPUT]\n\nTone: [TONE]\nPurpose: [PURPOSE]\nContext: [CONTEXT]`;
+  // Save the loaded prompt to chrome.storage.local for access in the settings page and everywhere else
+  chrome.storage.local.set({ defaultPrompt });
 
   // Load session prompt override if exists
   function loadPromptOverride() {
@@ -374,14 +365,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Use prompt in generation
-  function getCurrentPrompt(input, tone, purpose) {
+  function getCurrentPrompt(input, tone, purpose, context) {
     return new Promise((resolve) => {
       chrome.storage.local.get(["promptOverride"], (data) => {
         let prompt = data.promptOverride || defaultPrompt;
+        // Replace placeholders only, preserve any other content
         prompt = prompt
-          .replace("[INPUT]", input)
-          .replace("[TONE]", tone)
-          .replace("[PURPOSE]", purpose);
+          .replace(/\[INPUT\]/g, input)
+          .replace(/\[TONE\]/g, tone)
+          .replace(/\[PURPOSE\]/g, purpose)
+          .replace(/\[CONTEXT\]/g, context || "");
         resolve(prompt);
       });
     });
