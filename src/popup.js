@@ -283,7 +283,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- Prompt Override Logic ---
   // Remove fetch logic and define defaultPrompt directly
-  const defaultPrompt = `You are WriteWise, an AI writing assistant. Rewrite the following text according to the user's selected tone, purpose, and context.\n\nInstructions:\n- Carefully read the input text.\n- Rewrite it to match the specified tone and purpose.\n- Incorporate the provided context if relevant.\n- Do not add information not present in the input.\n- Output only the improved text.\n\n[INPUT]\n\nTone: [TONE]\nPurpose: [PURPOSE]\nContext: [CONTEXT]`;
+  const defaultPrompt = `You are WriteWise, an AI writing assistant. Rewrite the following text/sentence by polishing it. Format it according to the user's selected tone, purpose, and context.\n\nInstructions:\n- Carefully read the input text.\n- Rewrite it to match the specified tone and purpose.\n- Use simple words.\n- Do not add information not present in the input.\n- Output only the improved text.\n- Do not rewrite if the text or sentence if already correct.\n\n[INPUT]\n\nTone: [TONE]\nPurpose: [PURPOSE]\nContext: [CONTEXT]`;
   // Save the loaded prompt to chrome.storage.local for access in the settings page and everywhere else
   chrome.storage.local.set({ defaultPrompt });
 
